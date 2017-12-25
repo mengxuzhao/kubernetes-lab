@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-filewatcher
+  labels:
+    app: webapp
+spec:
+  containers:
+  - name: filewatcher
+    image: mengxuzhao/filewatcher
+    volumeMounts:
+    - mountPath: /data
+      name: web-content-volume
+  - name: frontend
+    image: mengxuzhao/apache
+    volumeMounts:
+    - mountPath: /var/www/html/images
+      name: web-content-volume
+    ports:
+    - containerPort: 80
+  volumes:
+  - name: web-content-volume
+    emptyDir: {}
