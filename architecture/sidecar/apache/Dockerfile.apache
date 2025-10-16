@@ -1,9 +1,0 @@
-FROM ubuntu:16.04
-
-RUN apt-get update && apt-get install -y apache2 openssl php7.0 php7.0-dev php-apcu libapache2-mod-php7.0 curl php-curl vim
-RUN mkdir /var/www/html/images
-RUN chmod -R 777 /var/www/html/images
-COPY index.html /var/www/html
-COPY upload.php /var/www/html
-
-CMD ["/usr/sbin/apachectl","-DFOREGROUND"]
